@@ -1,10 +1,13 @@
 function mergeSort(array)
 {
+    // Checks if the length of the array is 1 or less
+    // If its true, it returns the array as it is already sorted
     if (array.length <= 1)
     {
         return array;
     }
     else {
+        // This codes helps split the array into halves
         const mid = Math.floor(array.length / 2);
         const leftHalf = array.slice(0, mid);
         const rightHalf = array.slice(mid);
@@ -12,9 +15,11 @@ function mergeSort(array)
         // console.log(leftHalf)
         // console.log(rightHalf)
 
+        // The halves will be recursively called to sort them
         const leftSorted = mergeSort(leftHalf);
-        const rightSorted = mergeSort(rightHalf)
+        const rightSorted = mergeSort(rightHalf);
         
+        // The halves will be merge using the merge function
         return merge(leftSorted, rightSorted);
     }
 }
@@ -25,6 +30,7 @@ function merge(left, right)
     let i = 0;
     let j = 0;
 
+    // The while loop compares the elements from the left and right arrays then pushes the smaller one to the result array
     while (i < left.length && j < right.length)
     {
         if (left[i] < right[j])
@@ -37,8 +43,10 @@ function merge(left, right)
         }
     }
 
+    // This will append any remaining elements from both arrays in case one array is longer than the other
     result = result.concat(left.slice(i)).concat(right.slice(j));
 
+    // This will return the merged and sorted array
     return result;
 }
 
